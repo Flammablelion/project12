@@ -7,26 +7,26 @@ import { MyCards } from './dhared/interfaces/cards.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild("inputName") inputName: ElementRef;
-  @ViewChild("inputText") text: ElementRef;
 
   title = 'project11';
   card: MyCards[] = [];
-  number: number = 0;
+  editCard: MyCards;
 
 
+  onAddNote(note: MyCards){
+    let id =
+    this.card.length > 0
+    ? this.card[this.card.length - 1].id +1 : 0;
 
-  addCard() {
-    let cards: MyCards = { id: this.number++, name: this.inputName.nativeElement.value, inputText: this.text.nativeElement.value, date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString() }
-    this.card.push(cards);
-    console.log(this.card[0]);
+    this.card.push(note);
   }
-  getClear() {
-    this.inputName.nativeElement.value = "";
-    this.text.nativeElement.value = "";
+  onEditCard(index:number){
+      this.editCard = this.card[index];
   }
-  deliteCard(index) {
+
+  onDeleteCard(index:number) {
     this.card.splice(index, 1);
   }
+
 
 }
